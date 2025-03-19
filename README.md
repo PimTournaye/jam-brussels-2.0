@@ -36,3 +36,37 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Setting up Supabase
+
+To set up Supabase in your project, follow these steps:
+
+1. Sign up for a free account at [Supabase](https://supabase.io/).
+2. Create a new project in the Supabase dashboard.
+3. Obtain your Supabase URL and Anon Key from the project settings.
+
+### Environment Variables
+
+Create a `.env` file in the root of your project and add the following environment variables:
+
+```
+SUPABASE_URL=your-supabase-url
+SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+Replace `your-supabase-url` and `your-supabase-anon-key` with the values obtained from the Supabase dashboard.
+
+### Supabase Client
+
+The Supabase client is configured in `src/lib/supabaseClient.ts`. You can use this client to interact with your Supabase database.
+
+```typescript
+import { createClient } from '@supabase/supabase-js';
+
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+export { supabase };
+```
